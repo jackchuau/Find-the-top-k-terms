@@ -22,7 +22,7 @@ object Problem1 {
     var valid_terms:List[String] = List()
     for (line <- input.collect() )  {
       val string = line.toString()
-      val words = string.split("[\\s*$&#/\"'\\,.:;?!\\[\\](){}<>~\\-_]+") 
+      val words = string.split("[\\s*$&#/\"'\\,.:;?!\\[\\](){}<>~\\-_]+").filterNot{_.isEmpty()}
       var scanned_string:List[String] = List()
       for(word <- words) {
         if (Character.isLetter(word.charAt(0)))  {
