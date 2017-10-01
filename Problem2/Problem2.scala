@@ -19,14 +19,20 @@ object Problem2 {
 
     val transformed_input = input_to_array.map { x => (x.split("\t")(0), x.split("\t")(1)) }
     
-    val reversed_input = sc.parallelize(transformed_input).map(x => (x._2, x._1)).reduceByKey((x, y) => (x.toString() + ":" + y.toString()))                     
+    val reversed_input = sc.parallelize(transformed_input).map(x => (x._2, x._1)).reduceByKey((x, y) => (x + ":" + y))                     
     
-    val sorted_output_array = reversed_input.collect().sortBy(_._1)
+    val sorted_output_array = reversed_input.collect().sortBy(_._1.toInt)
     
     val builder = StringBuilder.newBuilder
 
+      /*  
+       *  there is hidden trick
+       *  in case that the input file is something disordered like: 0\t1\n0\t2\n1\t2\n3\t1\n1\t3...
+       *  which will generate a sorted_output_array like [..., (1, 0:3:2), ...] but we want [..., (1, 0:2:3),...]
+       */
     for(i <- 0 to sorted_output_array.length-1) {
-      val adjacency_list = sorted_output_array(i)._2.split(":").sorted
+//      val adjacency_list = sorted_output_array(i)._2.split(":").sorted
+      val adjacency_list = sorted_output_array(i)._2.split(":").map {_.toInt}.sorted
       val neighbour_builder = StringBuilder.newBuilder
       var prefix = ""
       for(i <- 0 to adjacency_list.length-1) {
