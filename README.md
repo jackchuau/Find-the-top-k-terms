@@ -17,3 +17,15 @@ Code format:
 Name your scala file as “Problem1.scala”, the object as “Problem1”, and put it in package “comp9313.ass3”. Store the final result in a text file on disk. Your program should take three parameters: the input text file, the output folder, and the value of k.
 
 
+
+
+##############		Problem2	##############
+
+Input file:
+tiny-graph.txt
+
+Output format:
+The output is the adjacency list of the reversed graph, and the nodes are sorted in ascending order in each list. Format each line as: “NodeId\tNeighbor1, Neighbor2, ..., Neighborm”, using only one comma to separate the node IDs in the list.
+
+Code format:
+Name your scala file as “Problem2.scala”, the object as “Problem2”, and put it in package “comp9313.ass3”. Store the final result in a text file on disk. Your program should take two parameters: the input graph file and the output folder.
